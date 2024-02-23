@@ -9,7 +9,7 @@ import org.junit.Test;
  * @Description DoubleLinkListTest
  */
 public class DoubleLinkListTest {
-    DoubleLinkList list = new DoubleLinkList();
+    DoubleLinkList<String> list = new DoubleLinkList<>();
     
     @Before
     public void init() {

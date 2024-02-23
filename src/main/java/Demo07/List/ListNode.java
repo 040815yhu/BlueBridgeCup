@@ -6,12 +6,13 @@ package Demo07.List;
  * @Description ListNode
  * 节点
  */
-public class ListNode {
-    Object data;
-    ListNode pre;
-    ListNode next;
+public class ListNode<T> {
+    T data;
+    ListNode<T> pre;
+    ListNode<T> next;
     
-    public ListNode(Object data) {
+    
+    public ListNode(T data) {
         this.data = data;
     }
 }

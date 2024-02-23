@@ -5,9 +5,9 @@ package Demo07.List;
  * @Date 2024/2/23 13:51
  * @Description DoubleLinkList
  */
-public class DoubleLinkList implements MyList {
-    private ListNode first = new ListNode(null);
-    private ListNode last = new ListNode(null);
+public class DoubleLinkList<T> implements MyList<T> {
+    private ListNode<T> first = new ListNode<T>(null);
+    private ListNode<T> last = new ListNode<T>(null);
     private int size;
     
     public DoubleLinkList() {
@@ -16,8 +16,8 @@ public class DoubleLinkList implements MyList {
     }
     
     @Override
-    public void add(Object element) {
-        ListNode newNode = new ListNode(element);
+    public void add(T element) {
+        ListNode<T> newNode = new ListNode<T>(element);
         last.pre.next = newNode;
         newNode.next = last;
         newNode.pre = last.pre;
@@ -26,8 +26,8 @@ public class DoubleLinkList implements MyList {
     }
     
     @Override
-    public void delete(Object element) {
-        ListNode p = first.next;
+    public void delete(T element) {
+        ListNode<T> p = first.next;
         while (p != last) {
             if (p.data.equals(element)) {
                 p.pre.next = p.next;
@@ -47,7 +47,7 @@ public class DoubleLinkList implements MyList {
             return;//啥也不干
         }
         int i = 0;//指针指向的节点的索引
-        ListNode p = first.next;
+        ListNode<T> p = first.next;
         while (p != last) {
             if (i == index) {
                 p.pre.next = p.next;
@@ -63,12 +63,12 @@ public class DoubleLinkList implements MyList {
     }
     
     @Override
-    public void update(int index, Object newElement) {
+    public void update(int index, T newElement) {
         if (index < 0 || index >= size) {
             return;
         }
         int i = 0;//指针指向的节点的索引
-        ListNode p = first.next;
+        ListNode<T> p = first.next;
         while (p != last) {
             if (i == index) {
                 p.data = newElement;
@@ -79,8 +79,8 @@ public class DoubleLinkList implements MyList {
     }
     
     @Override
-    public boolean contains(Object target) {
-        ListNode p = first.next;
+    public boolean contains(T target) {
+        ListNode<T> p = first.next;
         while (p != last) {
             if (p.data.equals(target)) {
                 return true;
@@ -91,12 +91,12 @@ public class DoubleLinkList implements MyList {
     }
     
     @Override
-    public Object at(int index) {
+    public T at(int index) {
         if (index < 0 || index >= size) {
             return null;
         }
         int i = 0;//指针指向的节点的索引
-        ListNode p = first.next;
+        ListNode<T> p = first.next;
         while (p != last) {
             if (i == index) {
                 return p.data;
@@ -108,9 +108,9 @@ public class DoubleLinkList implements MyList {
     }
     
     @Override
-    public int indexOf(Object element) {
+    public int indexOf(T element) {
         int i = 0;//指针指向的节点的索引
-        ListNode p = first.next;
+        ListNode<T> p = first.next;
         while (p != last) {
             if (p.data.equals(element)) {
                 return i;
@@ -124,7 +124,7 @@ public class DoubleLinkList implements MyList {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("[");
-        ListNode p = first.next;
+        ListNode<T> p = first.next;
         while (p != last) {
             sb.append(p.data);
             if (p.next != last) {
@@ -136,7 +136,7 @@ public class DoubleLinkList implements MyList {
         return sb.toString();
     }
     
-    private ListNode now = first;
+    private ListNode<T> now = first;
     
     @Override
     public boolean hasNext() {
@@ -144,8 +144,8 @@ public class DoubleLinkList implements MyList {
     }
     
     @Override
-    public Object next() {
-        ListNode next = now.next;
+    public T next() {
+        ListNode<T> next = now.next;
         now = now.next;
         return next.data;
     }

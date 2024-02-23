@@ -5,27 +5,27 @@ package Demo07.List;
  * @Date 2024/2/22 19:27
  * @Description SingleLinkedList
  */
-public class SingleLinkedList implements MyList {
-    private ListNode first;
-    private ListNode last;
+public class SingleLinkedList<T> implements MyList<T> {
+    private ListNode<T> first;
+    private ListNode<T> last;
     private int size;
     
     @Override
-    public void add(Object element) {
+    public void add(T element) {
         if (first == null) {
-            first = new ListNode(element);
+            first = new ListNode<T>(element);
             last = first;
         } else {
-            last.next = new ListNode(element);
+            last.next = new ListNode<T>(element);
             last = last.next;
         }
         size++;
     }
     
     @Override
-    public void delete(Object element) {
-        ListNode p = first;
-        ListNode pre = null;
+    public void delete(T element) {
+        ListNode<T> p = first;
+        ListNode<T> pre = null;
         while (p != null) {
             if (p.data.equals(element)) {
                 if (p == first) {
@@ -47,8 +47,8 @@ public class SingleLinkedList implements MyList {
             return;//啥也不干
         }
         int i = 0;//指针指向的节点的索引
-        ListNode p = first;
-        ListNode pre = null;
+        ListNode<T> p = first;
+        ListNode<T> pre = null;
         while (p != null) {
             if (i == index) {
                 if (p == first) {
@@ -66,12 +66,12 @@ public class SingleLinkedList implements MyList {
     }
     
     @Override
-    public void update(int index, Object newElement) {
+    public void update(int index, T newElement) {
         if (index<0 ||index>=size){
             return;
         }
         int i = 0;//指针指向的节点的索引
-        ListNode p = first;
+        ListNode<T> p = first;
         while (p != null) {
             if (i == index) {
                 p.data = newElement;
@@ -82,8 +82,8 @@ public class SingleLinkedList implements MyList {
     }
     
     @Override
-    public boolean contains(Object target) {
-        ListNode p = first;
+    public boolean contains(T target) {
+        ListNode<T> p = first;
         while (p != null) {
             if (p.data.equals(target)) {
                 if (p == first) {
@@ -96,12 +96,12 @@ public class SingleLinkedList implements MyList {
     }
     
     @Override
-    public Object at(int index) {
+    public T at(int index) {
         if (index<0||index>=size){
             return null;
         }
         int i = 0;//指针指向的节点的索引
-        ListNode p = first;
+        ListNode<T> p = first;
         while (p != null) {
             if (i == index) {
                 return p.data;
@@ -113,9 +113,9 @@ public class SingleLinkedList implements MyList {
     }
     
     @Override
-    public int indexOf(Object element) {
+    public int indexOf(T element) {
         int i = 0;//指针指向的节点的索引
-        ListNode p = first;
+        ListNode<T> p = first;
         while (p != null) {
             if (p.data.equals(element)) {
                 return i;
@@ -129,7 +129,7 @@ public class SingleLinkedList implements MyList {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("[");
-        ListNode p = first;
+        ListNode<T> p = first;
         while (p != null) {
             sb.append(p.data);
             if (p.next != null) {
@@ -147,7 +147,7 @@ public class SingleLinkedList implements MyList {
     }
     
     @Override
-    public Object next() {
+    public T next() {
         return null;
     }
 }

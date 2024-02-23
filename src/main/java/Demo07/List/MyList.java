@@ -8,20 +8,20 @@ import java.util.Iterator;
  * @Description MyList
  * 线性表(列表)的接口定义
  */
-public interface MyList<T> extends Iterator {
+public interface MyList<T> extends Iterator<T> {
     /**
      * 新增一个元素
      *
      * @param element
      */
-    public void add(Object element);
+    public void add(T element);
     
     /**
      * 删除相同元素
      *
      * @param element
      */
-    public void delete(Object element);
+    public void delete(T element);
     
     /**
      * 根据索引删除元素
@@ -36,7 +36,7 @@ public interface MyList<T> extends Iterator {
      * @param index
      * @param newElement
      */
-    public void update(int index, Object newElement);
+    public void update(int index, T newElement);
     
     /**
      * 当前列表中是否含有target这个元素
@@ -44,7 +44,7 @@ public interface MyList<T> extends Iterator {
      * @param target
      * @return
      */
-    public boolean contains(Object target);
+    public boolean contains(T target);
     
     /**
      * 返回指定索引处的元素
@@ -52,7 +52,7 @@ public interface MyList<T> extends Iterator {
      * @param index
      * @return
      */
-    public Object at(int index);
+    public T at(int index);
     
     /**
      * 查找element的索引,如果没有返回-1
@@ -60,5 +60,5 @@ public interface MyList<T> extends Iterator {
      * @param element
      * @return
      */
-    public int indexOf(Object element);
+    public int indexOf(T element);
 }
