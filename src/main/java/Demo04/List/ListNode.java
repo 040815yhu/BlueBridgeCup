@@ -7,8 +7,8 @@ package Demo04.List;
  * 节点
  */
 public class ListNode {
-    private Object data;
-    private ListNode next;
+    Object data;
+    ListNode next;
     
     public ListNode(Object data) {
         this.data = data;
