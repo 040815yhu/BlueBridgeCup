@@ -10,14 +10,14 @@ public interface MyList {
     /**
      * 新增一个元素
      *
-     * @param Element
+     * @param element
      */
     public void add(Object element);
     
     /**
      * 删除相同元素
      *
-     * @param Element
+     * @param element
      */
     public void delete(Object element);
     
