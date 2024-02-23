@@ -56,13 +56,13 @@ public class SingleLinkedList implements MyList {
                 } else {
                     pre.next = p.next;
                 }
+                size--;
                 break;
             }
             pre = p;
             p = p.next;
             i++;
         }
-        size--;
     }
     
     @Override
