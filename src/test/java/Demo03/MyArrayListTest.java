@@ -1,5 +1,7 @@
 package Demo03;
 
+import DataStructure.Demo03.MyArrayList;
+import DataStructure.Demo03.MyList;
 import org.junit.Test;
 
 /**

@@ -1,4 +1,4 @@
-package Demo08;
+package DataStructure.Demo08;
 
 import java.util.*;
 

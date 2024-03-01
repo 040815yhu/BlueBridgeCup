@@ -1,4 +1,4 @@
-package Demo04.List;
+package DataStructure.Demo04.List;
 
 /**
  * @Author YwaiX

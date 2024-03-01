@@ -1,4 +1,4 @@
-package Demo03;
+package DataStructure.Demo03;
 
 /**
  * @Author YwaiX

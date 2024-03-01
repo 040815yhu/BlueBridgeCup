@@ -1,9 +1,8 @@
 package Demo07.List;
 
+import DataStructure.Demo07.List.SingleLinkedList;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * @Author YwaiX
