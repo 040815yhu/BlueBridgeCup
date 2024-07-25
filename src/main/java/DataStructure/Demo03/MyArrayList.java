@@ -7,9 +7,12 @@ package DataStructure.Demo03;
  * 用顺序存储(数组)方式来实现列表
  */
 public class MyArrayList implements MyList {
-    private Object[] elements;//真正存储元素的底层结构
-    private int size = 0;//元素个数
-    private int capacity = 10;//容量
+    //真正存储元素的底层结构
+    private Object[] elements;
+    //元素个数
+    private int size = 0;
+    //容量
+    private int capacity = 10;
     
     public MyArrayList() {
         elements = new Object[capacity];
