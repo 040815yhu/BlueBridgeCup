@@ -28,7 +28,7 @@ public class MyArrayList<E> implements MyList<E> {
     }
     
     @Override
-    public void add(Object element) {
+    public void add(E element) {
         this.expansion();
         elements[size++] = element;
     }
