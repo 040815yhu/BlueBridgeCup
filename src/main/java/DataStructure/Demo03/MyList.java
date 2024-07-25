@@ -6,57 +6,71 @@ package DataStructure.Demo03;
  * @Description MyList
  * 线性表(列表)的接口定义
  */
-public interface MyList {
+public interface MyList<E> {
     /**
-     * 新增一个元素
-     *
-     * @param element
+     * 添加元素
+     * @param element 要添加的元素
      */
-    public void add(Object element);
+    void add(E element);
     
     /**
-     * 删除相同元素
-     *
-     * @param element
+     * 在指定位置添加元素
+     * @param index 指定位置
+     * @param element 添加元素
      */
-    public void delete(Object element);
+    void add(int index , E element);
     
     /**
-     * 根据索引删除元素
-     *
-     * @param index
+     * 删除元素
+     * 根据元素删除
+     * @param element 要删除的元素
+     * @return 返回是否删除成功
      */
-    public void delete(int index);
+    boolean remove(E element);
     
     /**
-     * 将指定索引位置的元素替换成新元素
-     *
-     * @param index
-     * @param newElement
+     * 根据下标删除元素
+     * @param index 要删除的元素下标
      */
-    public void update(int index, Object newElement);
+    E remove(int index);
     
     /**
-     * 当前列表中是否含有target这个元素
-     *
-     * @param target
-     * @return
+     * 修改元素
+     * @param index 要修改的元素下标
+     * @param element 修改后的元素
      */
-    public boolean contains(Object target);
+    E set(int index , E element);
     
     /**
-     * 返回指定索引处的元素
-     *
-     * @param index
-     * @return
+     * 查询元素是否在集合中存在
+     * @param o 要查询的元素
+     * @return 返回一个布尔值表示是否存在
      */
-    public Object at(int index);
+    boolean contains(Object o);
     
     /**
-     * 查找element的索引,如果没有返回-1
-     *
-     * @param element
-     * @return
+     * 返回当前下标的元素
+     * @param index 元素下标
+     * @return 返回当前下标的元素
      */
-    public int indexOf(Object element);
+    E get(int index);
+    
+    /**
+     * 返回元素的下标
+     * @param o 元素
+     * @return 返回元素的下标
+     */
+    int indexOf(Object o);
+    
+    /**
+     * 返回元素个数
+     * @return 元素个数
+     */
+    int size();
+    
+    /**
+     * 结合判空
+     * @return 如果集合为空返回false,否则返回true
+     */
+    boolean isEmpty();
 }

@@ -6,78 +6,94 @@ package DataStructure.Demo03;
  * @Description MyArrayList
  * 用顺序存储(数组)方式来实现列表
  */
-public class MyArrayList implements MyList {
-    //真正存储元素的底层结构
+public class MyArrayList<E> implements MyList<E> {
+    //存放元素的容器
     private Object[] elements;
     //元素个数
     private int size = 0;
-    //容量
+    //容器容量
     private int capacity = 10;
     
     public MyArrayList() {
-        elements = new Object[capacity];
+        this.elements = new Object[capacity];
     }
     
     public MyArrayList(int capacity) {
-        this.capacity = capacity;
-        elements = new Object[capacity];
+        if (capacity >= 0) {
+            this.capacity = capacity;
+            this.elements = new Object[capacity];
+        } else {
+            throw new IllegalArgumentException("Illegal Capacity: " + capacity);
+        }
     }
-    
-    public MyArrayList(Object[] elements, int size, int capacity) {
-        this.elements = elements;
-        this.size = size;
-        this.capacity = capacity;
-    }
-    
     
     @Override
     public void add(Object element) {
-        if (size == capacity) {//扩容
-            capacity *= 2;//增加一倍的容量
-            Object[] newArr = new Object[capacity];//新建一个数组
-            for (int i = 0; i < size; i++) {
-                newArr[i] = elements[i];
-            }
-            elements = newArr;//把旧的那个数组扔掉
-        }
+        this.expansion();
         elements[size++] = element;
     }
     
     @Override
-    public void delete(Object element) {
-        int index = indexOf(element);
-        if (index>=0){
-            delete(index);
+    public void add(int index, E element) {
+        this.expansion();
+        if (index > size) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size:" + size);
         }
+        if (index < size) {
+            for (int i = size; i > index; i--) {
+                elements[i] = elements[i - 1];
+            }
+        }
+        elements[index] = element;
+        size++;
     }
     
     @Override
-    public void delete(int index) {
+    public boolean remove(E element) {
+        int index = indexOf(element);
+        return remove(index) != null;
+    }
+    
+    @Override
+    public E remove(int index) {
+        if (index < 0) {
+            return null;
+        }
+        E oldValue = (E) elements[index];
         for (int i = index; i < size; i++) {
-            elements[i] = elements[i+1];
+            elements[i] = elements[i + 1];
         }
         size--;
+        return oldValue;
     }
     
     @Override
-    public void update(int index, Object newElement) {
-        elements[index] = newElement;
+    public E set(int index, E element) {
+        if (index >= size || index < 0) {
+            throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + size);
+        }
+        E oldValue = (E) elements[index];
+        elements[index] = element;
+        return oldValue;
     }
     
     @Override
-    public boolean contains(Object target) {
-        return indexOf(target) >=0;
+    public boolean contains(Object o) {
+        return indexOf(o) >= 0;
     }
     
     @Override
-    public Object at(int index) {
-        return elements[index];
+    public E get(int index) {
+        if (index >= size) {
+            throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + size);
+        }
+        return (E) elements[index];
     }
     
     @Override
-    public int indexOf(Object element) {
+    public int indexOf(Object o) {
         for (int i = 0; i < size; i++) {
-            if (elements[i].equals(element)) {
+            if (o.equals(elements[i])) {
                 return i;
             }
         }
@@ -85,12 +101,37 @@ public class MyArrayList implements MyList {
     }
     
     @Override
+    public int size() {
+        return size;
+    }
+    
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
+    
+    @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("[");
+        StringBuilder builder = new StringBuilder("[");
         for (int i = 0; i < size; i++) {
-            sb.append(elements[i] + (i == size - 1 ? "" : ","));
+            builder.append(elements[i]).append(i == size - 1 ? "" : ",");
         }
-        sb.append("]");
-        return sb.toString();
+        builder.append("]");
+        return builder.toString();
+    }
+    
+    
+    /**
+     * 扩容
+     */
+    private void expansion() {
+        if (size == capacity) {
+            capacity *= 2;
+            Object[] newArr = new Object[capacity];
+            for (int i = 0; i < size; i++) {
+                newArr[i] = elements[i];
+            }
+            elements = newArr;
+        }
     }
 }
